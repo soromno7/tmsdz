@@ -1,19 +1,28 @@
-const input = document.getElementById("input");
 const btn = document.getElementById("btn");
-const UTC = document.getElementById("userTypeContainer");
+const container = document.getElementById("container");
 
-let userType;
+function setLoader() {
+    container.innerHTML = `Loading...`;
+}
 
-input.addEventListener("input", () => {
-    userType = event.target.value;
-    console.log(userType)
-})
+function hideLoader() {
+    container.innerHTML = ``;
+}
+
+async function getResponse() {
+    let start = await fetch("https://jsonplaceholder.typicode.com/users");
+    let content = await start.json();
+
+    for (key in content) {
+        container.innerHTML += `Name: ${content[key].name}, Email: ${content[key].email}, Website: ${content[key].website}<br>`
+    }
+}
 
 btn.addEventListener("click", () => {
-    localStorage.setItem("test", userType)
-    let result = localStorage.getItem("test")
-    UTC.innerHTML = result;
+    setLoader()
+    if(start => start.json()) {
+        hideLoader()
+    }
+    getResponse()
 })
 
-let result = localStorage.getItem("test")
-UTC.innerHTML = result;
