@@ -10,8 +10,8 @@ function hideLoader() {
 }
 
 async function getResponse() {
-    let start = await fetch("https://jsonplaceholder.typicode.com/users");
-    let content = await start.json();
+    const start = await fetch("https://jsonplaceholder.typicode.com/users");
+    const content = await start.json();
 
     for (key in content) {
         container.innerHTML += `Name: ${content[key].name}, Email: ${content[key].email}, Website: ${content[key].website}<br>`
@@ -20,9 +20,9 @@ async function getResponse() {
 
 btn.addEventListener("click", () => {
     setLoader()
+    getResponse()
     if(start => start.json()) {
         hideLoader()
     }
-    getResponse()
 })
 
